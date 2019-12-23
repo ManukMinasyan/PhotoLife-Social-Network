@@ -1,0 +1,15 @@
+// Import Bulma's utilities
+@import "~bulma/sass/utilities/all";
+// Import colors
+@import "variables";
+// Import Bulma
+@import "~bulma";
+// Import Custom Functions
+@import "custom-functions.scss";
+// Import Custom Styles
+@import "custom-styles";
+@import "post";
+// Import component
+@import "~bulma-badge/src/sass/index";
+// Import Buefy;
+@import '~buefy/dist/buefy.css';

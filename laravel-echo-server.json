@@ -1,0 +1,29 @@
+{
+    "authHost": "http://photo-life.loc",
+    "authEndpoint": "/broadcasting/auth",
+    "database": "redis",
+    "databaseConfig": {
+        "redis": {
+            "host": "127.0.0.1",
+            "port": "6379"
+        },
+        "sqlite": {
+            "databasePath": "/storage/laravel-echo-server.sqlite"
+        }
+    },
+    "devMode": true,
+    "host": "photo-life.loc",
+    "port": "6001",
+    "protocol": "http",
+    "socketio": [],
+    "sslCertPath": "",
+    "sslKeyPath": "",
+    "sslCertChainPath": "",
+    "sslPassphrase": "",
+    "apiOriginAllow": {
+        "allowCors": false,
+        "allowOrigin": "",
+        "allowMethods": "",
+        "allowHeaders": ""
+    }
+}

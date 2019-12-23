@@ -1,0 +1,14 @@
+{
+  "name": "emojione-png-sprite-sass",
+  "_cacheHeaders": {
+    "ETag": "W/\"5e8cc55fdd28ac2853a7d40dbb02cf6a368a0b72f838ed13b565691514b9a270\"",
+    "Content-Length": "8970",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:W/\"5e8cc55",
+  "main": "index.scss",
+  "_source": "https://raw.githubusercontent.com/Deveo/emojione-png-sprites/gen-1/dist/style.scss",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/Deveo/emojione-png-sprites/gen-1/dist/style.scss",
+  "_direct": true
+}

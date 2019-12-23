@@ -1,0 +1,20 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/embed/post/{post}', 'EmbedController@post')->name('embed');
+
+Route::group(['prefix' => 'password', 'as' => 'password.'], function(){
+    Route::get('reset', 'Api\V1\Auth\ResetPasswordController@showResetForm')->name('reset');
+    Route::post('request', 'Api\V1\Auth\ResetPasswordController@reset')->name('request');
+});

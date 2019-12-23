@@ -1,0 +1,14 @@
+{
+  "name": "emojione-png-sprite-16",
+  "_cacheHeaders": {
+    "ETag": "W/\"b264dc2be783bc06f94b4dd02b28e952e3933f6e0be2fdada3fcc19aa5421477\"",
+    "Content-Length": "620078",
+    "Content-Type": "image/png"
+  },
+  "_release": "e-tag:W/\"b264dc2",
+  "main": "index.png",
+  "_source": "https://raw.githubusercontent.com/Deveo/emojione-png-sprites/gen-1/dist/sprite-16.png",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/Deveo/emojione-png-sprites/gen-1/dist/sprite-16.png",
+  "_direct": true
+}

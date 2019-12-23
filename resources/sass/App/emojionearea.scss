@@ -1,0 +1,16 @@
+@import '~emojionearea/dist/emojionearea.min.css';
+
+.chat-room {
+  .emojionearea {
+    .emojionearea-picker {
+      &.emojionearea-picker-position-top {
+        right: 7px;
+      }
+    }
+    &.emojionearea-inline {
+      .emojionearea-button {
+        right: 25px;
+      }
+    }
+  }
+}

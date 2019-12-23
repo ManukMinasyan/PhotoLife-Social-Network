@@ -1,0 +1,181 @@
+@import "emojione-png-sprite-sass/index";
+@include sprity-emojione(16, "/assets/emojione-png-sprite", (2: 64));
+
+#layout-app {
+  background: #f7f7f7;
+  background-image: url("images/background.svg");
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  min-height: 100vh;
+
+  .header {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+
+    .navbar {
+      background-color: transparent;
+    }
+  }
+
+  .add-post-modal {
+    .modal-card-body {
+      overflow: hidden;
+    }
+
+    .post-upload-section {
+      width: 100%;
+
+      .upload-draggable {
+        width: 100%;
+      }
+    }
+  }
+
+  .dropdown.is-active .dropdown-menu {
+    height: 100%;
+  }
+
+  [data-badge]::after {
+    z-index: 39;
+  }
+}
+
+#layout-auth {
+  background: #f7f7f7;
+  background-image: url("images/background.svg");
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+
+  // Text Colors
+  .has-text-purple {
+    color: $purple;
+  }
+
+  .features {
+    .column {
+      .card {
+        .icon {
+          position: absolute;
+          display: block;
+          left: -20px;
+          top: -20px;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          background-color: #ffffff;
+          border-radius: 50%;
+          border: 1px solid $green;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .button {
+    &.button-login {
+      width: 80%;
+    }
+  }
+}
+
+.has-custom-scrollbar {
+  scrollbar-color: #888 white; /* thumb and track color */
+  scrollbar-width: thin;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}
+
+.infinite-loading-container {
+  .infinite-status-prompt {
+    [class^=loading-] {
+      border-color: $primary;
+      &::before {
+        background-color: $primary;
+      }
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: ease opacity 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.video-wrapper {
+  display: table;
+  width: auto;
+  position: relative;
+  .video {
+    width: 100%;
+    border: 1px solid black;
+  }
+  .play-pause {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: #ffffff;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    margin: auto;
+    background-size: contain;
+    background-position: center;
+    span {
+      &.icon {
+        z-index: 2;
+      }
+    }
+    .play-video-icon:before {
+      font-size: 10em;
+    }
+    &:hover {
+      color: $primary
+    }
+  }
+}
+
+figure {
+  img {
+    &.avatar {
+      height: 100%;
+      object-fit:cover;
+    }
+    &.post-image {
+      object-fit:cover;
+    }
+  }
+}
