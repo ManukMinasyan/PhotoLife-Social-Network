@@ -1,5 +1,5 @@
 {
-    "authHost": "http://photo-life.loc",
+    "authHost": "https://photolife.minasyan.info",
     "authEndpoint": "/broadcasting/auth",
     "database": "redis",
     "databaseConfig": {
@@ -12,13 +12,13 @@
         }
     },
     "devMode": true,
-    "host": "photo-life.loc",
+    "host": "photolife.minasyan.info",
     "port": "6001",
-    "protocol": "http",
+    "protocol": "https",
     "socketio": [],
-    "sslCertPath": "",
-    "sslKeyPath": "",
-    "sslCertChainPath": "",
+    "sslCertPath": "/etc/letsencrypt/live/photolife.minasyan.info/cert.pem",
+    "sslKeyPath": "/etc/letsencrypt/live/photolife.minasyan.info/privkey.pem",
+    "sslCertChainPath": "/etc/letsencrypt/live/photolife.minasyan.info/chain.pem",
     "sslPassphrase": "",
     "apiOriginAllow": {
         "allowCors": false,
