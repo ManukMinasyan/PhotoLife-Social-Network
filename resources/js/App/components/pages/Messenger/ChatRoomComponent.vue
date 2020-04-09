@@ -23,7 +23,7 @@
                 <div class="bubble" v-for="message in group.messages"
                      :class="{ 'me' : checkAuthUser(message.sender.id), 'you' : !checkAuthUser(message.sender.id) }">
                     <b-tooltip :label="message.created_at_fully"
-                               :position="{ 'is-right' : checkAuthUser(message.sender.id), 'is-left' : !checkAuthUser(message.sender.id) }">
+                               :position="checkAuthUser(message.sender.id) ? 'is-right' : 'is-left'">
                         <text-helper :text="message.text"></text-helper>
                         <div class="row">
                             <file-preview :file="file" v-for="file in message.files"
