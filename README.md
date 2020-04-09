@@ -32,6 +32,8 @@ Demo: https://photolife.minasyan.info/ <br/>
 Admin Demo: https://photolife.minasyan.info/dashboard <br/>
 <strong>Login:</strong> admin@site.com <br/>
 <strong>Password:</strong> password
+<br /> <br />
+<strong>Telescope:</strong> https://photolife.minasyan.info/telescope <br />
 
 ## Installation
 
@@ -83,6 +85,20 @@ php artisan photolife:superadmin
 If you want to insert sample data into your application, run the command below:
 ```
 php artisan db:seed --class=DemoDataSeeder
+```
+
+### Supervisor configuration for socket server
+```
+#/etc/supervisor/conf.d/photolife_minasyan.conf
+
+[program:photolife.minasyan.info-echo-server]
+directory=/var/www/html/photolife.minasyan.info
+command=laravel-echo-server start
+autostart=true
+autorestart=true
+user=root
+redirect_stderr=true
+stdout_logfile=/var/www/html/photolife.minasyan.info/storage/logs/echo_server.log
 ```
 
 # To Do
