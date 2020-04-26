@@ -56,6 +56,7 @@
                                 <div class="posts-list">
                                     <div class="columns is-multiline">
                                         <user-post-component v-for="post in POPULAR_POSTS"
+                                                             :key="post.id"
                                                              :post="post"></user-post-component>
                                     </div>
                                 </div>

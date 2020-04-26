@@ -91,8 +91,8 @@
                 <b-tab-item :visible="$isAuthUser(USER.id)" v-if="$isAuthUser(USER.id)" label="Saved"
                             icon="bookmark-outline" :key="activeTab">
                     <transition-group name="fade" class="columns is-multiline posts-area">
-                        <post-component v-for="(post, key) in bookmarked_posts" :post="post"
-                                        :key="key"></post-component>
+                        <post-component v-for="post in bookmarked_posts" :post="post"
+                                        :key="post.id"></post-component>
                     </transition-group>
                     <infinite-loading @infinite="loadMoreBookmarkedPosts">
                         <div slot="no-results" class="column no-posts">

@@ -3,27 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Overtrue\LaravelFollow\Traits\CanBeBookmarked;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
 
 class Post extends Model implements HasMedia
 {
-    use HasTags, HasMediaTrait, CanBeLiked, CanBeBookmarked;
+    use HasTags, InteractsWithMedia, CanBeLiked, CanBeBookmarked;
 
     protected $fillable = [
-        'caption', 'member_id'
+        'caption',
+        'member_id'
     ];
 
     /**
-     * @param Media|null $media
+     * @param  Media|null  $media
      * @throws \Spatie\Image\Exceptions\InvalidManipulation
      */
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(300)
@@ -58,20 +58,23 @@ class Post extends Model implements HasMedia
     /**
      * Scope a query to only include public posts.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublic($query)
     {
-        return $query->whereHas('author', function ($q) {
-            $q->public();
-        });
+        return $query->whereHas(
+            'author',
+            function ($q) {
+                $q->public();
+            }
+        );
     }
 
     /**
      * Scope a query to only include popular posts.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeByPopularity($query)

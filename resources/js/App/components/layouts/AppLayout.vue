@@ -51,10 +51,10 @@
                                 </b-field>
                             </b-dropdown-item>
                         </b-dropdown>
-                        <b-navbar-item tag="router-link" :to="{name: 'messengerHome'}"  class="is-hidden-tablet">
+                        <b-navbar-item tag="router-link" :to="{name: 'messengerHome'}" class="is-hidden-tablet">
                             <b-icon size="is-small" icon="chat-outline"></b-icon>
                         </b-navbar-item>
-                        <b-dropdown position="is-bottom-left" aria-role="menu"  class="is-hidden-tablet" trap-focus>
+                        <b-dropdown position="is-bottom-left" aria-role="menu" class="is-hidden-tablet" trap-focus>
                             <b-navbar-item slot="trigger" @click="GET_NOTIFICATIONS">
                                 <b-icon size="is-small" icon="bell-outline"
                                         class="has-badge-rounded"
@@ -120,7 +120,8 @@
                                         </div>
                                         <b-notification v-if="!isShowedFollowRequests" :closable="false"
                                                         :type="notification.read_at ? 'is-white' : ''"
-                                                        v-for="notification in NOTIFICATIONS">
+                                                        v-for="( notification, key) in NOTIFICATIONS"
+                                                        :key="key">
                                             <template v-if="notification.type==='App\\Notifications\\PostLiked'">
                                                 <div class="is-pulled-right">
                                                     <router-link
@@ -262,7 +263,8 @@
                                         </div>
                                         <b-notification v-if="!isShowedFollowRequests" :closable="false"
                                                         :type="notification.read_at ? 'is-white' : ''"
-                                                        v-for="notification in NOTIFICATIONS">
+                                                        v-for="(notification, key) in NOTIFICATIONS"
+                                                        :key="key">
                                             <template v-if="notification.type==='App\\Notifications\\PostLiked'">
                                                 <div class="is-pulled-right">
                                                     <router-link
@@ -316,103 +318,106 @@
 </template>
 
 <script>
-    import debounce from 'lodash/debounce'
+  import debounce from 'lodash/debounce'
 
-    import {mapActions, mapGetters} from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
-    import BNavbarDropdown from "buefy/src/components/navbar/NavbarDropdown";
-    import BButton from "buefy/src/components/button/Button";
-    import BDropdownItem from "buefy/src/components/dropdown/DropdownItem";
-    import BNavbarItem from "buefy/src/components/navbar/NavbarItem";
+  import BNavbarDropdown from 'buefy/src/components/navbar/NavbarDropdown'
+  import BButton from 'buefy/src/components/button/Button'
+  import BDropdownItem from 'buefy/src/components/dropdown/DropdownItem'
+  import BNavbarItem from 'buefy/src/components/navbar/NavbarItem'
 
-    export default {
-        name: "AppLayout",
-        components: {BNavbarItem, BDropdownItem, BButton, BNavbarDropdown},
-        data() {
-            return {
-                isShowedFollowRequests: false,
-                searchData: [],
-                selected: null,
-                isFetching: false
-            }
-        },
-        watch: {
-            selected: function (val) {
-                if (val.type === 'member') {
-                    this.$router.push({name: 'user', params: {username: val.username}})
-                } else if (val.type === 'hashtags') {
-                    this.$router.push({name: 'hashtag', params: {tag: val.slug.en}})
-                }
-            }
-        },
-        created() {
-            this.GET_AUTH_USER().then(r => {
-                window.Echo.private('App.Models.Member.' + this.AUTH_USER.id)
-                    .notification((notification) => {
-                        console.log(notification);
-                        console.log(notification.type);
-                        this.PUSH_NOTIFICATION({
-                            type: notification.type,
-                            data: {
-                                username: notification.username,
-                                message: notification.message,
-                                post: notification.post
-                            },
-                            created_at: notification.created_at
-                        });
-                    });
-            });
-        },
-        computed: {
-            ...mapGetters('user', ['AUTH_USER', 'NOTIFICATIONS'])
-        },
-        methods: {
-            ...mapActions(['GET_SEARCH_DATA']),
-            ...mapActions('user', ['GET_AUTH_USER', 'GET_NOTIFICATIONS', 'MARK_NOTIFICATIONS_AS_READ', 'PUSH_NOTIFICATION', 'CONFIRM_FOLLOW_REQUEST', 'DELETE_FOLLOW_REQUEST', 'LOGOUT']),
-            markNotificationsAsRead() {
-                this.MARK_NOTIFICATIONS_AS_READ();
-            },
-            showFollowRequests() {
-                this.isShowedFollowRequests = !this.isShowedFollowRequests;
-            },
-            confirmFollowRequest(request_id) {
-                this.CONFIRM_FOLLOW_REQUEST(request_id);
-                this.removeFollowRequestFromList(request_id);
-            },
-            deleteFollowRequest(request_id) {
-                this.DELETE_FOLLOW_REQUEST(request_id);
-                this.removeFollowRequestFromList(request_id);
-            },
-            removeFollowRequestFromList(request_id) {
-                let index = this.AUTH_USER.follow_requests.map(x => {
-                    return x.id;
-                }).indexOf(request_id);
-                this.AUTH_USER.follow_requests.splice(index, 1);
-                if (!this.AUTH_USER.follow_requests.length) {
-                    this.isShowedFollowRequests = false;
-                }
-            },
-            getAsyncSearchData: debounce(function (query) {
-                if (!query.length) {
-                    this.searchData = [];
-                    return
-                }
-                this.isFetching = true;
-                this.GET_SEARCH_DATA(query)
-                    .then(({data}) => {
-                        this.searchData = [];
-                        data.forEach((item) => this.searchData.push(item))
-                    })
-                    .catch((error) => {
-                        this.searchData = [];
-                        throw error
-                    })
-                    .finally(() => {
-                        this.isFetching = false
-                    })
-            }, 500)
+  export default {
+    name: 'AppLayout',
+    components: { BNavbarItem, BDropdownItem, BButton, BNavbarDropdown },
+    data () {
+      return {
+        isShowedFollowRequests: false,
+        searchData: [],
+        selected: null,
+        isFetching: false,
+      }
+    },
+    watch: {
+      selected: function (val) {
+        if (val.type === 'member') {
+          this.$router.push({ name: 'user', params: { username: val.username } })
+        } else if (val.type === 'hashtags') {
+          this.$router.push({ name: 'hashtag', params: { tag: val.slug.en } })
         }
-    }
+      },
+    },
+    created () {
+      this.GET_AUTH_USER().then(r => {
+        window.Echo.private('App.Models.Member.' + this.AUTH_USER.id).notification((notification) => {
+          console.log(notification)
+          console.log(notification.type)
+          this.PUSH_NOTIFICATION({
+            type: notification.type,
+            data: {
+              username: notification.username,
+              message: notification.message,
+              post: notification.post,
+            },
+            created_at: notification.created_at,
+          })
+        })
+      })
+    },
+    computed: {
+      ...mapGetters('user', ['AUTH_USER', 'NOTIFICATIONS']),
+    },
+    methods: {
+      ...mapActions(['GET_SEARCH_DATA']),
+      ...mapActions('user', [
+        'GET_AUTH_USER',
+        'GET_NOTIFICATIONS',
+        'MARK_NOTIFICATIONS_AS_READ',
+        'PUSH_NOTIFICATION',
+        'CONFIRM_FOLLOW_REQUEST',
+        'DELETE_FOLLOW_REQUEST',
+        'LOGOUT']),
+      markNotificationsAsRead () {
+        this.MARK_NOTIFICATIONS_AS_READ()
+      },
+      showFollowRequests () {
+        this.isShowedFollowRequests = !this.isShowedFollowRequests
+      },
+      confirmFollowRequest (request_id) {
+        this.CONFIRM_FOLLOW_REQUEST(request_id)
+        this.removeFollowRequestFromList(request_id)
+      },
+      deleteFollowRequest (request_id) {
+        this.DELETE_FOLLOW_REQUEST(request_id)
+        this.removeFollowRequestFromList(request_id)
+      },
+      removeFollowRequestFromList (request_id) {
+        let index = this.AUTH_USER.follow_requests.map(x => {
+          return x.id
+        }).indexOf(request_id)
+        this.AUTH_USER.follow_requests.splice(index, 1)
+        if (!this.AUTH_USER.follow_requests.length) {
+          this.isShowedFollowRequests = false
+        }
+      },
+      getAsyncSearchData: debounce(function (query) {
+        if (!query.length) {
+          this.searchData = []
+          return
+        }
+        this.isFetching = true
+        this.GET_SEARCH_DATA(query).then(({ data }) => {
+          this.searchData = []
+          data.forEach((item) => this.searchData.push(item))
+        }).catch((error) => {
+          this.searchData = []
+          throw error
+        }).finally(() => {
+          this.isFetching = false
+        })
+      }, 500),
+    },
+  }
 </script>
 
 <style scoped lang="scss">
@@ -426,6 +431,7 @@
 
             section {
                 overflow-y: auto;
+
                 .notification {
                     margin: 0;
                     border-radius: 0;
@@ -436,6 +442,7 @@
                     .follow-requests-link {
                         padding: 3px 0;
                         border-bottom: 1px solid;
+
                         .count {
                             width: 43px;
                             line-height: 43px;
