@@ -1,8 +1,12 @@
 <template>
     <div class="chat-room">
         <div class="top">
-            <span>To: <span class="name">{{ conversation.user.name }}</span></span>
-            <div class="is-pulled-right">
+            <div>To:
+                <router-link :to="{name: 'user', params: {username: conversation.user.username}}">
+                    <span class="name">{{ conversation.user.name }}</span>
+                </router-link>
+            </div>
+            <div>
                 <b-dropdown aria-role="list">
                     <a slot="trigger">
                         <b-icon icon="dots-vertical"></b-icon>
@@ -72,36 +76,36 @@
     </div>
 </template>
 <script>
-    import 'emojionearea/dist/emojionearea.js';
-    import "#/emojionearea.scss"
+  import 'emojionearea/dist/emojionearea.js'
+  import '#/emojionearea.scss'
 
-    import {mapActions, mapGetters} from 'vuex';
+  import { mapActions, mapGetters } from 'vuex'
 
-    import BModal from "buefy/src/components/modal/Modal";
-    import BIcon from "buefy/src/components/icon/Icon";
-    import TextHelper from "../../../helpers/TextHelper";
+  import BModal from 'buefy/src/components/modal/Modal'
+  import BIcon from 'buefy/src/components/icon/Icon'
+  import TextHelper from '../../../helpers/TextHelper'
 
-    export default {
-        name: 'ChatRoomComponent',
-        components: {TextHelper, BIcon, BModal},
-        data() {
-            return {
-                conversation_id: this.$route.params.conversationId,
-                conversation: {
-                    user: {},
-                },
-                group_messages: [],
-                currentPage: 1,
-                activeUser: false,
-                typingTimer: false,
-                channel: '',
-                text: '',
-                constraints: {
-                    audio: false,
-                    video: true
-                },
-                incomingVideoCallModal: false
-            }
+  export default {
+    name: 'ChatRoomComponent',
+    components: { TextHelper, BIcon, BModal },
+    data () {
+      return {
+        conversation_id: this.$route.params.conversationId,
+        conversation: {
+          user: {},
+        },
+        group_messages: [],
+        currentPage: 1,
+        activeUser: false,
+        typingTimer: false,
+        channel: '',
+        text: '',
+        constraints: {
+          audio: false,
+          video: true,
+        },
+        incomingVideoCallModal: false,
+      }
         },
         created() {
             this.getConversation();
@@ -249,6 +253,8 @@
         width: 100%;
         height: 100%;
         .top {
+            display: flex;
+            justify-content: space-between;
             width: 100%;
             height: 47px;
             padding: 15px 29px;
@@ -263,15 +269,16 @@
         }
         .chat {
             position: relative;
-            padding: 0 35px 92px;
+            padding: 0 35px;
             border-width: 1px 1px 1px 0;
             border-style: solid;
             border-color: $light;
-            height: calc(100% - 48px);
+            height: calc(100vh - 270px);
             display: flex;
             overflow-y: auto;
             flex-direction: column;
             flex-flow: column nowrap;
+
             .bubble {
                 transition-timing-function: cubic-bezier(.4, -.04, 1, 1);
                 @for $i from 1 through 10 {

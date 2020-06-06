@@ -22,11 +22,11 @@
                             <div class="info">
                                 <span class="name">{{ conversation.user.username }}</span>
                                 <span class="time is-hidden-mobile">{{ conversation.last_message ?  conversation.last_message.created_at : '' }}</span>
-                                <span class="preview">
                                 <text-helper
-                                        :text="conversation.last_message ?  conversation.last_message.text : ''">
+                                        :text="conversation.last_message ?  conversation.last_message.text : ''"
+                                        :size="20"
+                                        tag="div" class="preview">
                                 </text-helper>
-                            </span>
                             </div>
                         </router-link>
                     </ul>
@@ -200,9 +200,7 @@
 
                     .preview {
                         font-size: 14px;
-                        display: inline-block;
                         overflow: hidden !important;
-                        width: 70%;
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         color: $grey;
