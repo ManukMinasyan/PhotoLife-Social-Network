@@ -1,5 +1,9 @@
 import http from '@/services/http'
 
+// Local Storage Service
+import LocalStorageService from '@/services/localstorageservice'
+const localStorageService = LocalStorageService.getService()
+
 export default {
     namespaced: true,
 
@@ -28,15 +32,11 @@ export default {
     mutations: {
         CREATE_SESSION(state, payload) {
             state.rules = payload.rules;
-            localStorage.setItem('token', payload.access_token);
-            localStorage.setItem('token_type', payload.token_type);
-            localStorage.setItem('expires_at', payload.expires_at);
+            localStorageService.setToken(payload)
         },
         DESTROY_SESSION(state) {
             state.rules = [];
-            localStorage.removeItem('token');
-            localStorage.removeItem('token_type');
-            localStorage.removeItem('expires_at');
+            localStorageService.clearToken()
             window.location.reload();
         },
         SET_AUTH_USER(state, payload) {
