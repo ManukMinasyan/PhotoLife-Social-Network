@@ -36,7 +36,7 @@ mix.js('resources/js/App/app.js', 'public/js')
     .sass('resources/sass/App/app.scss', 'public/css')
     .sass('resources/sass/App/embed/post.scss', 'public/css/embed')
     .sass('resources/sass/App/auth/reset.scss', 'public/css/auth').version();
-
+mix.copy('resources/assets', 'public/assets')
 
 /**
  * Dashboard

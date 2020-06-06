@@ -53,7 +53,7 @@ class Member extends Authenticatable implements HasMedia
         if ($val) {
             $avatar = $this->getFirstMedia('avatars')->getFullUrl();
         } else {
-            $avatar = 'https://bulma.io/images/placeholders/128x128.png';
+            $avatar = asset('/assets/img/placeholders/128x128.png');
         }
 
         return $avatar;
