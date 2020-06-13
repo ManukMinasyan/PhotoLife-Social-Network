@@ -13,6 +13,7 @@ use App\Http\Resources\Post\PostCollection;
 use App\Models\FollowRequest;
 use App\Models\Member;
 use App\Models\Post;
+use App\Notifications\MemberFollowed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -159,6 +160,19 @@ class MemberController extends Controller
             }
         } else {
             Auth::user()->toggleFollow($member);
+        }
+
+        /**
+         * Notification | MemberFollowed
+         * Older Notification Deleting Functionality
+         */
+        if ($member->isFollowed()) {
+            $member->notify(new MemberFollowed(Auth::user()));
+        }else {
+            $olderNotification = $member->notifications->where('data.member.id', Auth::id())->first();
+            if ($olderNotification) {
+                $olderNotification->delete();
+            }
         }
 
         return new MemberResource($member);

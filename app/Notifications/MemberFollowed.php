@@ -2,10 +2,8 @@
 
 namespace App\Notifications;
 
-use App\Http\Resources\Post\PostResource;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
@@ -69,14 +67,15 @@ class MemberFollowed extends Notification
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'user_id' => Auth::id(),
-            'username' => Auth::user()->username,
-            'message' => $this->message,
-            'post' => [
-                'id' => $this->post->id,
-                'cover' => $this->post->getFirstMedia('uploads')->getFullUrl()
-            ],
-            'created_at' => Carbon::now()->diffForHumans()
-        ]);
+                                        'user_id' => Auth::id(),
+                                        'username' => Auth::user()->username,
+                                        'message' => $this->message,
+                                        'member' => [
+                                            'id' => $this->member->id,
+                                            'username' => $this->member->username,
+                                            'avatar' => $this->member->avatar
+                                        ],
+                                        'created_at' => Carbon::now()->diffForHumans()
+                                    ]);
     }
 }

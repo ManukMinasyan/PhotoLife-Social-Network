@@ -376,7 +376,8 @@
         'PUSH_NOTIFICATION',
         'CONFIRM_FOLLOW_REQUEST',
         'DELETE_FOLLOW_REQUEST',
-        'LOGOUT']),
+        'LOGOUT'
+      ]),
       markNotificationsAsRead () {
         this.MARK_NOTIFICATIONS_AS_READ()
       },
