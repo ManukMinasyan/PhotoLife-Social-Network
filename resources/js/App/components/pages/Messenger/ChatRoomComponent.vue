@@ -51,8 +51,15 @@
                 <div slot="no-more" class="has-text-white">
                     You've scrolled through all the posts :)
                 </div>
-                <div slot="no-results" class="has-text-white">
-                    Sorry, no posts yet :(
+                <div slot="no-results" class="no-results">
+                    <img src="/assets/img/no-messages-found.png" alt="No message found!">
+                    <h2 class="title is-4 has-text-primary">
+                        No message found!
+                    </h2>
+                    <p>
+                        It seems, No messages in your inbox <br>
+                        "Lets start messaging now"
+                    </p>
                 </div>
             </infinite-loading>
         </div>
@@ -246,6 +253,16 @@
     $light: #e6e6e6;
     $wrapper: 1000px;
     $blue: #00b0ff;
+
+    .no-results {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        img {
+            width: 50%
+        }
+    }
 
     .chat-room {
         position: relative;
