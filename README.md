@@ -20,7 +20,7 @@
     <img src="https://buefy.org/static/img/buefy.1d65c18.png" height="50" alt="Buefy - Lightweight UI components for Vue.js based on Bulma" />
   </a>
     <a href="https://socket.io/">
-    <img src="https://socket.io/css/images/logo.svg" height="50" alt="SOCKET.IO - FEATURING THE FASTEST AND MOST RELIABLE REAL-TIME ENGINE" />
+    <img src="https://socket.io/images/logo.svg" height="50" alt="SOCKET.IO - FEATURING THE FASTEST AND MOST RELIABLE REAL-TIME ENGINE" />
   </a>
 </p>
 
