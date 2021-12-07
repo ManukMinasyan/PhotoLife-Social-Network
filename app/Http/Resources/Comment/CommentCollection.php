@@ -16,7 +16,7 @@ class CommentCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function (Comment $comment) {
-            return (new CommentResource($comment));
+            return new CommentResource($comment);
         });
 
         return parent::toArray($request);

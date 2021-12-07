@@ -6,7 +6,6 @@
  * Time: 01:28
  */
 
-
 namespace App\Models\Messenger\File;
 
 use App\Models\Member;
@@ -18,6 +17,7 @@ class File extends Model
     protected $fillable = [
         'message_id', 'member_id', 'name',
     ];
+
     protected $appends = [
         'file_details',
     ];

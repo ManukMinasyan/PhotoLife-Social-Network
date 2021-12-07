@@ -46,7 +46,6 @@ class LoginController extends Controller
         return view('dashboard.auth.login');
     }
 
-
     /**
      * Log the user out of the application.
      *

@@ -4,9 +4,9 @@
 
 use App\User;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use \Spatie\MediaLibrary\Models\Media;
-use \Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\Models\Media;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +20,10 @@ use \Illuminate\Support\Facades\Storage;
 */
 
 $factory->define(Media::class, function (Faker $faker) {
-
     static $id = 1;
 
     $dir = resource_path('demo_images');
-    $filename = scandir($dir)[$id+1];
+    $filename = scandir($dir)[$id + 1];
 
     $imageFile = new \Illuminate\Http\File(resource_path('demo_images/'.$filename));
     Storage::disk('public')->putFileAs($id, $imageFile, $filename);
@@ -36,12 +35,11 @@ $factory->define(Media::class, function (Faker $faker) {
         'file_name' => $filename,
         'model_type' => \App\Models\Post::class,
         'disk' => config('medialibrary.disk_name'),
-        'mime_type' => 'image/' . $imageFile->getExtension(),
+        'mime_type' => 'image/'.$imageFile->getExtension(),
         'order_column' => $id,
         'size' => $faker->numberBetween(10, 10000),
         'manipulations' => [],
         'custom_properties' => [],
-        'responsive_images' => []
+        'responsive_images' => [],
     ];
-
 });

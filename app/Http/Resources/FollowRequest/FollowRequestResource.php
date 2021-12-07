@@ -17,7 +17,7 @@ class FollowRequestResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'follower' => new MemberResource($this->follower)
+            'follower' => new MemberResource($this->follower),
         ];
     }
 }

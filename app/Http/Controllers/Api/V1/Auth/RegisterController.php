@@ -8,11 +8,10 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-
 
 class RegisterController extends Controller
 {
@@ -87,13 +86,13 @@ class RegisterController extends Controller
             'rules' => [
                 [
                     'actions' => ['update', 'delete'],
-                    'subject' => 'Post'
+                    'subject' => 'Post',
                 ],
                 [
                     'actions' => ['follow'],
-                    'subject' => 'User'
-                ]
-            ]
+                    'subject' => 'User',
+                ],
+            ],
         ]);
     }
 

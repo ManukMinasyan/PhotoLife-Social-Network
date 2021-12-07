@@ -13,6 +13,7 @@ class VideoChatStart implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $data;
+
     public $conversationId;
 
     /**

@@ -16,7 +16,6 @@ class ConversationResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'id' => $this->id,
             'last_message' => new MessageResource($this->messages->last()),

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Member;
+use Illuminate\Database\Seeder;
 
 class DemoDataSeeder extends Seeder
 {
@@ -21,7 +21,6 @@ class DemoDataSeeder extends Seeder
             $member->save();
         });
 
-
         /**
          * Posts Seeder
          */
@@ -31,12 +30,11 @@ class DemoDataSeeder extends Seeder
             for ($i = 0; $i < rand(1, 5); $i++) {
                 $fileKey = 2 + $key + $i;
                 $filename = $filenames[$fileKey];
-                $filePath = resource_path('demo_images/' . $filename);
+                $filePath = resource_path('demo_images/'.$filename);
                 $post->addMedia($filePath)->preservingOriginal()->toMediaCollection('uploads');
             }
 //            $post->media()->saveMany(factory(\Spatie\MediaLibrary\Models\Media::class, rand(1, 5))->make());
         });
-
 
         /**
          * Demo Admin Seed
@@ -50,7 +48,6 @@ class DemoDataSeeder extends Seeder
             'remember_token' => \Illuminate\Support\Str::random(10),
         ];
         \App\User::create($admin);
-
 
         /**
          * Demo Member Seed

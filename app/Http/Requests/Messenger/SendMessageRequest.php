@@ -27,7 +27,7 @@ class SendMessageRequest extends FormRequest
     {
         return [
             'text' => 'required',
-            'conversationId' => 'required'
+            'conversationId' => 'required',
         ];
     }
 }

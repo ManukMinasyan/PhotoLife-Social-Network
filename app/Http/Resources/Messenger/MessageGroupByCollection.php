@@ -10,7 +10,6 @@ class MessageGroupByCollection extends ResourceCollection
 {
     private $pagination;
 
-
     /**
      * Transform the resource collection into an array.
      *
@@ -19,13 +18,12 @@ class MessageGroupByCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-
         return $this->collection->groupBy(function ($val) {
             return Carbon::parse($val->created_at)->format('M d, Y h:00');
         }, 'id')->transform(function ($messages, $group_date) {
             return [
                 'group_date' => $group_date,
-                'messages' => new MessageCollection($messages)
+                'messages' => new MessageCollection($messages),
             ];
         })->values()->toArray();
     }

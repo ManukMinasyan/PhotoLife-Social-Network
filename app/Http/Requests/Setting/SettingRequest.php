@@ -28,7 +28,7 @@ class SettingRequest extends FormRequest
             'site_description' => 'required|string|max:1000',
             'google_analytics_code' => 'nullable|max:1000',
             'site_logo' => 'nullable|image',
-            'site_favicon' => 'nullable|image'
+            'site_favicon' => 'nullable|image',
         ];
     }
 }

@@ -16,7 +16,7 @@ class PostCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function (Post $post) {
-            return (new PostResource($post));
+            return new PostResource($post);
         });
 
         return parent::toArray($request);

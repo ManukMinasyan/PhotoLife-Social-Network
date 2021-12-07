@@ -17,7 +17,7 @@ class ReportTypeCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function (ReportType $reportType) {
-            return (new ReportTypeResource($reportType));
+            return new ReportTypeResource($reportType);
         });
 
         return parent::toArray($request);

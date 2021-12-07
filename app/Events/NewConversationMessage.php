@@ -34,7 +34,7 @@ class NewConversationMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('chat-room.' . $this->message->conversation_id);
+        return new PresenceChannel('chat-room.'.$this->message->conversation_id);
     }
 
     /**

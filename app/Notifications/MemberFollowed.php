@@ -13,6 +13,7 @@ class MemberFollowed extends Notification
     use Queueable;
 
     private $member;
+
     private $message;
 
     /**
@@ -22,7 +23,7 @@ class MemberFollowed extends Notification
      */
     public function __construct($member)
     {
-        $this->message = "started following you.";
+        $this->message = 'started following you.';
         $this->member = $member;
     }
 
@@ -36,7 +37,6 @@ class MemberFollowed extends Notification
     {
         return ['database', 'broadcast'];
     }
-
 
     /**
      * Get the array representation of the notification.
@@ -53,8 +53,8 @@ class MemberFollowed extends Notification
             'member' => [
                 'id' => $this->member->id,
                 'username' => $this->member->username,
-                'avatar' => $this->member->avatar
-            ]
+                'avatar' => $this->member->avatar,
+            ],
         ];
     }
 
@@ -67,15 +67,15 @@ class MemberFollowed extends Notification
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-                                        'user_id' => Auth::id(),
-                                        'username' => Auth::user()->username,
-                                        'message' => $this->message,
-                                        'member' => [
-                                            'id' => $this->member->id,
-                                            'username' => $this->member->username,
-                                            'avatar' => $this->member->avatar
-                                        ],
-                                        'created_at' => Carbon::now()->diffForHumans()
-                                    ]);
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->username,
+            'message' => $this->message,
+            'member' => [
+                'id' => $this->member->id,
+                'username' => $this->member->username,
+                'avatar' => $this->member->avatar,
+            ],
+            'created_at' => Carbon::now()->diffForHumans(),
+        ]);
     }
 }

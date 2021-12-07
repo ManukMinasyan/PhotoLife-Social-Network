@@ -33,16 +33,16 @@ class SettingsController extends Controller
     {
         $settings = $request->validated();
 
-        foreach($settings as $key => $value){
-            if($key === 'site_logo'){
+        foreach ($settings as $key => $value) {
+            if ($key === 'site_logo') {
                 //Move Uploaded File
                 $destinationPath = 'images';
                 $value->move($destinationPath, 'logo.png');
-            }elseif($key === 'site_favicon'){
+            } elseif ($key === 'site_favicon') {
                 //Move Uploaded File
                 $destinationPath = '';
                 $value->move($destinationPath, 'favicon.ico');
-            }else {
+            } else {
                 setting([$key => $value])->save();
             }
         }

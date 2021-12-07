@@ -14,7 +14,6 @@ class MediaResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'id' => $this->id,
             'mime_type' => $this->mime_type,
@@ -22,7 +21,7 @@ class MediaResource extends JsonResource
             'thumb_url' => file_exists($this->getPath('thumb'))
                 ? $this->getFullUrl('thumb')
                 : asset('images/video-none-background.jpg'),
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at,
         ];
     }
 }

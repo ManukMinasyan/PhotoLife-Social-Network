@@ -3,13 +3,13 @@
 namespace App\Models\Messenger\Message;
 
 use App\Models\Member;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Messenger\File\File;
+use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
     protected $fillable = [
-        'member_id', 'text', 'deleted_by'
+        'member_id', 'text', 'deleted_by',
     ];
 
     /**
