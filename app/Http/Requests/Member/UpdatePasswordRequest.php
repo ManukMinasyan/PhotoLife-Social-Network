@@ -31,9 +31,9 @@ class UpdatePasswordRequest extends FormRequest
         return [
             'old_password' => [
                 'required', 'string', 'min:8',
-                new MatchOldPassword
+                new MatchOldPassword,
             ],
-            'new_password' => ['required', 'string', 'min:8', 'confirmed', 'different:old_password']
+            'new_password' => ['required', 'string', 'min:8', 'confirmed', 'different:old_password'],
         ];
     }
 }

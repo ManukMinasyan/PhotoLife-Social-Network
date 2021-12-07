@@ -37,13 +37,13 @@ class MemberController extends Controller
             'rules' => [
                 [
                     'actions' => ['update', 'delete'],
-                    'subject' => ['Post']
+                    'subject' => ['Post'],
                 ],
                 [
                     'actions' => ['follow'],
-                    'subject' => 'User'
-                ]
-            ]
+                    'subject' => 'User',
+                ],
+            ],
         ]);
     }
 
@@ -60,9 +60,9 @@ class MemberController extends Controller
             $avatar = $request->file('avatar');
             $user->clearMediaCollection('avatars');
             $extension = $avatar->getClientOriginalExtension();
-            $name = uniqid('upload-') . '.' . $extension;
-            $avatar->move(public_path() . '/uploads/avatars/', $name);
-            $user->addMedia(public_path() . '/uploads/avatars/' . $name)->toMediaCollection('avatars');
+            $name = uniqid('upload-').'.'.$extension;
+            $avatar->move(public_path().'/uploads/avatars/', $name);
+            $user->addMedia(public_path().'/uploads/avatars/'.$name)->toMediaCollection('avatars');
 
             $data['avatar'] = $name;
         }
@@ -146,16 +146,16 @@ class MemberController extends Controller
     {
         $member = Member::findByUsername($member);
 
-        if ($member->isPrivate() && !$member->isFollowed()) {
+        if ($member->isPrivate() && ! $member->isFollowed()) {
             if ($member->isRequested()) {
                 FollowRequest::where([
                     'follower_id' => Auth::id(),
-                    'followable_id' => $member->id
+                    'followable_id' => $member->id,
                 ])->firstOrFail()->delete();
             } else {
                 FollowRequest::firstOrCreate([
                     'follower_id' => Auth::id(),
-                    'followable_id' => $member->id
+                    'followable_id' => $member->id,
                 ]);
             }
         } else {
@@ -168,7 +168,7 @@ class MemberController extends Controller
          */
         if ($member->isFollowed()) {
             $member->notify(new MemberFollowed(Auth::user()));
-        }else {
+        } else {
             $olderNotification = $member->notifications->where('data.member.id', Auth::id())->first();
             if ($olderNotification) {
                 $olderNotification->delete();
@@ -177,7 +177,6 @@ class MemberController extends Controller
 
         return new MemberResource($member);
     }
-
 
     /**
      * @param FollowRequest $followRequest

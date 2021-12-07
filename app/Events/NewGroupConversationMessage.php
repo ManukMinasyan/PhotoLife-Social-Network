@@ -17,10 +17,12 @@ class NewGroupConversationMessage implements ShouldBroadcast
      * @var
      */
     public $text;
+
     /**
      * @var
      */
     public $channel;
+
     /**
      * @var array
      */

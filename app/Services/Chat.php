@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use Illuminate\Contracts\Config\Repository;
 use App\Repositories\Conversation\ConversationRepository;
 use App\Repositories\GroupConversation\GroupConversationRepository;
+use Illuminate\Contracts\Config\Repository;
 
 class Chat
 {
@@ -13,6 +13,7 @@ class Chat
     protected $conversation;
 
     protected $userId;
+
     /**
      * @var GroupConversationRepository
      */

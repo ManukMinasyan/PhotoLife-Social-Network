@@ -70,7 +70,6 @@ return [
         'tiny_placeholder_generator' => Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\Blurred::class,
     ],
 
-    
     /*
      * When converting Media instances to response the medialibrary will add
      * a `loading` attribute to the `img` tag. Here you can set the default
@@ -87,12 +86,12 @@ return [
      * it will use the filename of the original and concatenate the conversion name to it.
      */
     'conversion_file_namer' => \Spatie\MediaLibrary\Conversions\DefaultConversionFileNamer::class,
-    
+
     /*
      * The class that contains the strategy for determining a media file's path.
      */
     'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
-    
+
     /*
      * When urls to files get generated, this class will be called. Leave empty
      * if your files are stored locally above the site root or on s3.
@@ -110,7 +109,7 @@ return [
      * metadata and applying a little bit of compression. These are
      * the optimizers that will be used by default.
      */
-     'image_optimizers' => [
+    'image_optimizers' => [
         Spatie\ImageOptimizer\Optimizers\Jpegoptim::class => [
             '--strip-all', // this strips out all text information such as comments and EXIF data
             '--all-progressive', // this will make sure the resulting image is a progressive one
@@ -135,7 +134,7 @@ return [
     /*
      * These generators will be used to create an image of media files.
      */
-     'image_generators' => [
+    'image_generators' => [
         Spatie\MediaLibrary\Conversions\ImageGenerators\Image::class,
         Spatie\MediaLibrary\Conversions\ImageGenerators\Webp::class,
         Spatie\MediaLibrary\Conversions\ImageGenerators\Pdf::class,

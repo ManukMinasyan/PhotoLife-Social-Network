@@ -6,7 +6,6 @@
 |
 */
 
-
 Route::group(['prefix' => 'login', 'as' => 'login', 'namespace' => 'Auth'], function () {
     Route::get('/', 'LoginController@showLoginForm');
     Route::post('/', 'LoginController@login');

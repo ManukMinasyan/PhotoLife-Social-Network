@@ -16,7 +16,7 @@ class MemberCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function (Member $member) {
-            return (new MemberResource($member));
+            return new MemberResource($member);
         });
 
         return parent::toArray($request);

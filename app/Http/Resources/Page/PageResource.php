@@ -20,7 +20,7 @@ class PageResource extends JsonResource
             'alias' => $this->alias,
             'description' => $this->description,
             'keywords' => $this->keywords,
-            'content' => $this->content
+            'content' => $this->content,
         ];
     }
 }

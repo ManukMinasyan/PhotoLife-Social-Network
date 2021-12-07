@@ -51,9 +51,9 @@ class LoginController extends Controller
 
         $this->validate($request, [
             'username' => 'required',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ], [
-            'username.required' => 'The Username or Email is required!'
+            'username.required' => 'The Username or Email is required!',
         ]);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -98,8 +98,9 @@ class LoginController extends Controller
         $tokenResult = $user->createToken('Member Personal Access Token');
 
         $token = $tokenResult->token;
-        if ($request->remember_me)
+        if ($request->remember_me) {
             $token->expires_at = Carbon::now()->addWeeks(1);
+        }
         $token->save();
 
         return response()->json([
@@ -111,13 +112,13 @@ class LoginController extends Controller
             'rules' => [
                 [
                     'actions' => ['update', 'delete'],
-                    'subject' => 'Post'
+                    'subject' => 'Post',
                 ],
                 [
                     'actions' => ['follow'],
-                    'subject' => 'User'
-                ]
-            ]
+                    'subject' => 'User',
+                ],
+            ],
         ]);
     }
 
@@ -130,13 +131,13 @@ class LoginController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ]);
 
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
             return redirect()->intended('/');
         }
+
         return back()->withInput($request->only('email', 'remember'));
     }
 }

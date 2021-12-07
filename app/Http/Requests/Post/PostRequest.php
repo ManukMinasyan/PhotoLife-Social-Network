@@ -24,9 +24,9 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            "caption" => "nullable|string|max:1000",
-            "uploads" => "required|array|min:1",
-            "uploads.*" => "required|mimetypes:image/jpg,image/jpeg,image/png,image/gif,video/mp4,video/webm,video/mov,video/ogg|max:10000"
+            'caption' => 'nullable|string|max:1000',
+            'uploads' => 'required|array|min:1',
+            'uploads.*' => 'required|mimetypes:image/jpg,image/jpeg,image/png,image/gif,video/mp4,video/webm,video/mov,video/ogg|max:10000',
         ];
     }
 }

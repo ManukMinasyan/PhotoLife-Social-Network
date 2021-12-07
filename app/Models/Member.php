@@ -14,7 +14,6 @@ use Overtrue\LaravelFollow\Traits\CanLike;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-
 class Member extends Authenticatable implements HasMedia
 {
     use HasApiTokens, InteractsWithMedia, HasSettingsTable, Notifiable, CanFollow, CanBeFollowed, CanLike, CanBookmark;
@@ -31,7 +30,7 @@ class Member extends Authenticatable implements HasMedia
     public $incrementing = false;
 
     protected $fillable = [
-        'name', 'username', 'email', 'phone_number', 'website', 'bio', 'avatar', 'password'
+        'name', 'username', 'email', 'phone_number', 'website', 'bio', 'avatar', 'password',
     ];
 
     protected $hidden = [
@@ -41,7 +40,7 @@ class Member extends Authenticatable implements HasMedia
     public static $publicPrivacy = 'public';
 
     public $defaultSettings = [
-        'privacy' => 'public'
+        'privacy' => 'public',
     ];
 
     /**
@@ -64,7 +63,7 @@ class Member extends Authenticatable implements HasMedia
      */
     public function posts()
     {
-        return $this->hasMany(Post::class,'member_id');
+        return $this->hasMany(Post::class, 'member_id');
     }
 
     public function follow_requests()
@@ -110,7 +109,6 @@ class Member extends Authenticatable implements HasMedia
     {
         return $this->isFollowedBy(Auth::user());
     }
-
 
     /**
      * @return bool

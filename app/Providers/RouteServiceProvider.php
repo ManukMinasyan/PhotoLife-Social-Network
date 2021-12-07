@@ -26,7 +26,6 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
-
     }
 
     /**
@@ -62,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('dashboard')
             ->as('dashboard.')
             ->middleware(['web'])
-            ->namespace($this->namespace . '\Dashboard')
+            ->namespace($this->namespace.'\Dashboard')
             ->group(base_path('routes/dashboard.php'));
     }
 

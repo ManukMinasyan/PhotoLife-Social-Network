@@ -24,7 +24,7 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "caption" => "nullable|string|max:1000"
+            'caption' => 'nullable|string|max:1000',
         ];
     }
 }

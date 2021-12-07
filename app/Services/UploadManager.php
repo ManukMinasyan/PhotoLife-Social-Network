@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class UploadManager
 {
     private $mime;
+
     private $disk;
 
     /**

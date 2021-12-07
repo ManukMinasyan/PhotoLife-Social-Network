@@ -20,7 +20,6 @@ class ReportController extends Controller
         return new ReportTypeCollection($report_types);
     }
 
-
     /**
      * @param Post $post
      * @param ReportType $reportType
@@ -30,7 +29,7 @@ class ReportController extends Controller
     {
         $post->reports()->firstOrCreate([
             'member_id' => Auth::id(),
-            'report_type_id' => $reportType->id
+            'report_type_id' => $reportType->id,
         ]);
 
         return response()->json(['success' => true]);

@@ -56,7 +56,6 @@ return [
 
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Laravel Echo server configurations
@@ -69,7 +68,7 @@ return [
         'authEndpoint' => '/broadcasting/auth',
         'port' => env('SOCKET_PORT', '6001'),
         'sslCertPath' => env('SSL_CERT', ''),
-        'sslKeyPath' => env('SSL_PATH', '')
+        'sslKeyPath' => env('SSL_PATH', ''),
     ],
 
 ];

@@ -13,17 +13,18 @@ class SearchController extends Controller
         $results = collect();
 
         $members = Member::where(function ($q) use ($query) {
-            $q->where('name', 'like', '%' . $query . '%');
-            $q->orWhere('username', 'like', '%' . $query . '%');
+            $q->where('name', 'like', '%'.$query.'%');
+            $q->orWhere('username', 'like', '%'.$query.'%');
         })->limit(20)->get();
 
         $tags = Tag::where(function ($q) use ($query) {
-            $q->where('name->en', 'like', '%' . $query . '%');
+            $q->where('name->en', 'like', '%'.$query.'%');
         })->limit(20)->get();
 
         if ($members->count()) {
             $results = $results->merge($members->transform(function ($m) {
                 $m->type = 'member';
+
                 return $m;
             }));
         }

@@ -16,7 +16,7 @@ class FollowRequestCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function (FollowRequest $followRequest) {
-            return (new FollowRequestResource($followRequest));
+            return new FollowRequestResource($followRequest);
         });
 
         return parent::toArray($request);

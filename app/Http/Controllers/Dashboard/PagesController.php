@@ -50,7 +50,6 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -84,6 +83,7 @@ class PagesController extends Controller
     public function destroy(Page $page)
     {
         $page->delete();
+
         return redirect()->route('dashboard.pages.index')->with('status', 'Page deleted successfully!');
     }
 }

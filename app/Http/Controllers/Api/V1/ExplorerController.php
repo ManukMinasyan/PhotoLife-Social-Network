@@ -12,14 +12,12 @@ class ExplorerController extends Controller
 {
     public function getPosts(Request $request)
     {
-
         $posts = Post::byPopularity()->orderBy('created_at', 'DESC')
             ->whereHas('author', function ($q) {
                 $q->whereHas('modelSettings', function ($q) {
                     $q->where('settings->privacy', Member::$publicPrivacy);
                 });
             });
-
 
         if ($request->has('tag')) {
             $posts = $posts->whereHas('tags', function ($q) use ($request) {

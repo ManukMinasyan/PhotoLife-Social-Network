@@ -16,7 +16,7 @@ class ConversationCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function (Conversation $conversation) {
-            return (new ConversationResource($conversation));
+            return new ConversationResource($conversation);
         });
 
         return parent::toArray($request);

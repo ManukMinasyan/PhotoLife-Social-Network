@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     private $reportable_type = [
-        'post' => Post::class
+        'post' => Post::class,
     ];
 
     protected $fillable = [
         'member_id',
-        'report_type_id'
+        'report_type_id',
     ];
 
     /**
