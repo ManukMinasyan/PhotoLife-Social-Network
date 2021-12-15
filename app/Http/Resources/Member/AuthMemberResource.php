@@ -31,7 +31,7 @@ class AuthMemberResource extends JsonResource
             'follow_requests' => new FollowRequestCollection($this->whenLoaded('follow_requests')),
             'followings_count' => $this->followings()->count(),
             'followers_count' => $this->followers()->count(),
-            'privacy' => $this->settings()->get('privacy')
+            'privacy' => $this->settings()->get('privacy'),
         ];
     }
 }

@@ -10,7 +10,7 @@ class Comment extends Model
     use CanBeLiked;
 
     protected $fillable = [
-        'body'
+        'body',
     ];
 
     public function author()
@@ -18,9 +18,8 @@ class Comment extends Model
         return $this->belongsTo(Member::class);
     }
 
-
     public function replies()
     {
-        return $this->hasMany(Comment::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 }

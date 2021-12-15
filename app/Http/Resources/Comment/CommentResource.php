@@ -24,7 +24,7 @@ class CommentResource extends JsonResource
             'replies' => new CommentCollection($this->whenLoaded('replies')),
             'likers' => new MemberCollection($this->likers),
             'isLiked' => $this->isLikedBy(Auth::user()),
-            'created_at' => $this->created_at->diffForHumans(null, false, true)
+            'created_at' => $this->created_at->diffForHumans(null, false, true),
         ];
     }
 }

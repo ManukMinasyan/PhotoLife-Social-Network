@@ -14,7 +14,7 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/embed/post/{post}', 'EmbedController@post')->name('embed');
 
-Route::group(['prefix' => 'password', 'as' => 'password.'], function(){
+Route::group(['prefix' => 'password', 'as' => 'password.'], function () {
     Route::get('reset', 'Api\V1\Auth\ResetPasswordController@showResetForm')->name('reset');
     Route::post('request', 'Api\V1\Auth\ResetPasswordController@reset')->name('request');
 });

@@ -92,7 +92,7 @@ class MessengerController extends Controller
         $data = $request->validated();
 
         $this->conversationRepository->sendMessage($data['conversationId'], [
-            'text' => $data['text']
+            'text' => $data['text'],
         ]);
 
         return response('', 201);

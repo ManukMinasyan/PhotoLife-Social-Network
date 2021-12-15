@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\Post\PostUpdateRequest;
-use App\Models\Member;
-use App\Notifications\PostLiked;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\PostRequest;
+use App\Http\Requests\Post\PostUpdateRequest;
 use App\Http\Resources\Post\PostCollection;
 use App\Http\Resources\Post\PostResource;
+use App\Models\Member;
 use App\Models\Post;
+use App\Notifications\PostLiked;
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
@@ -30,7 +30,6 @@ class PostsController extends Controller
 
         return new PostCollection($posts);
     }
-
 
     /**
      * @return PostCollection
@@ -55,7 +54,7 @@ class PostsController extends Controller
     {
         $member = Member::findByUsername($username);
 
-        if ($member->isPrivate() && !$member->isFollowed() && $member->id !== Auth::id()) {
+        if ($member->isPrivate() && ! $member->isFollowed() && $member->id !== Auth::id()) {
             return abort(403);
         }
 
@@ -80,9 +79,9 @@ class PostsController extends Controller
 
         foreach ($request->file('uploads') as $uploadItem) {
             $extension = $uploadItem->getClientOriginalExtension();
-            $name = uniqid('upload-') . '.' . $extension;
-            $uploadItem->move(public_path() . '/uploads/', $name);
-            $post->addMedia(public_path() . '/uploads/' . $name)
+            $name = uniqid('upload-').'.'.$extension;
+            $uploadItem->move(public_path().'/uploads/', $name);
+            $post->addMedia(public_path().'/uploads/'.$name)
                 ->toMediaCollection('uploads');
         }
 

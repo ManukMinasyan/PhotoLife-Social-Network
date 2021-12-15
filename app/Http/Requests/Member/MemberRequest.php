@@ -29,17 +29,17 @@ class MemberRequest extends FormRequest
             'name' => 'required',
             'username' => [
                 'required',
-                Rule::unique('members')->ignore(Auth::id())
+                Rule::unique('members')->ignore(Auth::id()),
             ],
             'email' => [
                 'required',
                 'email',
-                Rule::unique('members')->ignore(Auth::id())
+                Rule::unique('members')->ignore(Auth::id()),
             ],
             'website' => 'nullable|url',
             'phone_number' => 'nullable|phone:AUTO',
             'bio' => 'nullable|max:400',
-            'avatar' => 'sometimes|image|mimes:jpg,jpeg,png|max:20000'
+            'avatar' => 'sometimes|image|mimes:jpg,jpeg,png|max:20000',
         ];
     }
 }

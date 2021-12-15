@@ -13,14 +13,14 @@ class ReportTypesTableSeeder extends Seeder
     {
         $types = [
             [
-                'name' => 'It\'s spam'
+                'name' => 'It\'s spam',
             ],
             [
-                'name' => 'Nudity or pornography'
+                'name' => 'Nudity or pornography',
             ],
             [
-                'name' => 'Hate speech or symbols'
-            ]
+                'name' => 'Hate speech or symbols',
+            ],
         ];
 
         foreach ($types as $type) {

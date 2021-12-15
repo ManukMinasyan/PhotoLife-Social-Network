@@ -28,7 +28,7 @@ class MemberResource extends JsonResource
             'isRequested' => $this->isRequested(),
             'followings_count' => $this->followings()->count(),
             'followers_count' => $this->followers()->count(),
-            'privacy' => $this->settings()->get('privacy')
+            'privacy' => $this->settings()->get('privacy'),
         ];
     }
 }

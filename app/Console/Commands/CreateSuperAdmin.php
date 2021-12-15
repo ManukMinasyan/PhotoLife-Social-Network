@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\User;
-use Illuminate\Console\Command;
 use Illuminate\Config\Repository as Config;
+use Illuminate\Console\Command;
 use Illuminate\Validation\Factory as ValidatorFactory;
 
 class CreateSuperAdmin extends Command
@@ -50,15 +50,14 @@ class CreateSuperAdmin extends Command
         $email = $this->setEmail();
         $password = $this->setPassword();
         $user = User::create([
-            'name' => "Admin",
+            'name' => 'Admin',
             'email' => $email,
             'role' => 'superadmin',
         ]);
         $user->password = bcrypt($password);
         $user->save();
-        $this->info("Your account has been created");
+        $this->info('Your account has been created');
     }
-
 
     /**
      * Prompt user to enter email and validate it.
@@ -71,11 +70,10 @@ class CreateSuperAdmin extends Command
         if ($this->validateEmail($email)) {
             return $email;
         } else {
-            $this->error("Your email is not valid");
+            $this->error('Your email is not valid');
             $this->setEmail();
         }
     }
-
 
     /**
      * Prompt user to enter password, confirm and validate it.
@@ -94,7 +92,7 @@ class CreateSuperAdmin extends Command
                 $this->setPassword();
             }
         } else {
-            $this->error("Your password is not valid, at least 6 characters");
+            $this->error('Your password is not valid, at least 6 characters');
             $this->setPassword();
         }
     }
@@ -103,7 +101,7 @@ class CreateSuperAdmin extends Command
      * Determine if the email address given valid.
      *
      * @param  string $email
-     * @return boolean
+     * @return bool
      */
     private function validateEmail($email)
     {
@@ -116,7 +114,7 @@ class CreateSuperAdmin extends Command
      * Determine if the password given valid.
      *
      * @param  string $password
-     * @return boolean
+     * @return bool
      */
     private function validatePassword($password)
     {

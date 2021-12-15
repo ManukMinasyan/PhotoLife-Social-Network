@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Overtrue\LaravelFollow\Traits\CanBeBookmarked;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Tags\HasTags;
 
 class Post extends Model implements HasMedia
@@ -16,7 +16,7 @@ class Post extends Model implements HasMedia
 
     protected $fillable = [
         'caption',
-        'member_id'
+        'member_id',
     ];
 
     /**

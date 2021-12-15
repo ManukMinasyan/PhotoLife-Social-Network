@@ -15,7 +15,7 @@ class NotificationCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function ($notification) {
-            return (new NotificationResource($notification));
+            return new NotificationResource($notification);
         });
 
         return parent::toArray($request);

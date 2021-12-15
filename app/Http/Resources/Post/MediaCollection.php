@@ -15,7 +15,7 @@ class MediaCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function ($media) {
-            return (new MediaResource($media));
+            return new MediaResource($media);
         });
 
         return parent::toArray($request);

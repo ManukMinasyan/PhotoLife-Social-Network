@@ -16,7 +16,7 @@ class MessageCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function (Message $message) {
-            return (new MessageResource($message));
+            return new MessageResource($message);
         });
 
         return parent::toArray($request);

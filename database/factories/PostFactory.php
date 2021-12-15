@@ -10,6 +10,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'caption' => $faker->text(200),
         'member_id' => function () {
             return App\Models\Member::inRandomOrder()->first()->id;
-        }
+        },
     ];
 });

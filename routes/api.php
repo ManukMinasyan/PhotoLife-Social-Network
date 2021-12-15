@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'api.v1.'], function () {
-
     Route::group(['prefix' => 'user'], function () {
         Route::post('login', 'Auth\LoginController@login');
         Route::post('register', 'Auth\RegisterController@register');
@@ -21,7 +20,6 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'api.v1.'], fun
     });
 
     Route::middleware('auth:api')->group(function () {
-
         Route::group(['prefix' => 'user'], function () {
             Route::get('/auth', 'MemberController@getAuthMember');
             Route::post('/auth', 'MemberController@updateAuthMember');
@@ -54,7 +52,7 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'api.v1.'], fun
 
         Route::get('/posts/by-popularity', 'PostsController@postsByPopularity');
         Route::apiResources([
-            'posts' => 'PostsController'
+            'posts' => 'PostsController',
         ]);
         Route::post('/posts/{post}/like', 'PostsController@like');
         Route::post('/posts/{post}/bookmark', 'PostsController@bookmark');
@@ -75,5 +73,4 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'api.v1.'], fun
 
         Route::get('/quotes/random', 'QuotesController@getRandom')->name('quotes.get-random');
     });
-
 });

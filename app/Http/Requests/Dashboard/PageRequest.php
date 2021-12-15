@@ -28,14 +28,14 @@ class PageRequest extends FormRequest
         $page = $this->route('page');
         $alisRule = Rule::unique('pages');
 
-        if($page) {
+        if ($page) {
             $alisRule->ignore($page->id);
         }
 
         return [
             'title' => 'required',
             'alias' => [
-                'required', $alisRule
+                'required', $alisRule,
             ],
             'description' => 'required',
             'keywords' => 'required',

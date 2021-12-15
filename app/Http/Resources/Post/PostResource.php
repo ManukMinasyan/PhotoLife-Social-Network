@@ -29,7 +29,7 @@ class PostResource extends JsonResource
             'comments_count' => $this->comments->count(),
             'isLiked' => $this->isLikedBy(Auth::user()),
             'isBookmarked' => $this->isBookmarkedBy(Auth::user()),
-            'created_at' => $this->created_at->diffForHumans()
+            'created_at' => $this->created_at->diffForHumans(),
         ];
     }
 }

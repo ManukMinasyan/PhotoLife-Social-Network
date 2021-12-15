@@ -2,16 +2,16 @@
 
 namespace App\Repositories\Conversation;
 
+use App\Events\NewConversationMessage;
+use App\Events\VideoChatStart;
 use App\Models\Member;
+use App\Models\Messenger\Conversation\Conversation;
+use App\Repositories\BaseRepository;
+use App\Services\UploadManager;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use App\Events\NewConversationMessage;
-use App\Events\VideoChatStart;
-use App\Models\Messenger\Conversation\Conversation;
-use App\Repositories\BaseRepository;
-use App\Services\UploadManager;
 use Illuminate\Support\Facades\Log;
 
 class ConversationRepository extends BaseRepository
@@ -20,6 +20,7 @@ class ConversationRepository extends BaseRepository
      * Associated Repository Model.
      */
     const MODEL = Conversation::class;
+
     /**
      * @var UploadManager
      */
@@ -43,7 +44,7 @@ class ConversationRepository extends BaseRepository
         $conversations = $this->query()
             ->with([
                 'firstUser',
-                'secondUser'])
+                'secondUser', ])
             ->where(function ($q) {
                 $q->where('first_member_id', Auth::id());
                 $q->orWhere('second_member_id', Auth::id());
@@ -52,8 +53,8 @@ class ConversationRepository extends BaseRepository
                 $q->whereNull('deleted_by');
                 $q->orWhere('deleted_by', '!=', Auth::id());
             })
-            ->selectRaw("conversations.*, (SELECT MAX(created_at) from messages WHERE messages.conversation_id=conversations.id) as latest_message_on")
-            ->orderBy("latest_message_on", "DESC")
+            ->selectRaw('conversations.*, (SELECT MAX(created_at) from messages WHERE messages.conversation_id=conversations.id) as latest_message_on')
+            ->orderBy('latest_message_on', 'DESC')
             ->get();
 
         return $conversations;
@@ -161,7 +162,6 @@ class ConversationRepository extends BaseRepository
                 $q->orWhere('second_member_id', Auth::id());
             })->firstOrFail();
 
-
         $conversation->messages()->where(function ($q) {
             $q->whereNotNull('deleted_by');
             $q->where('deleted_by', '!=', Auth::id());
@@ -225,11 +225,12 @@ class ConversationRepository extends BaseRepository
 
         $message = $conversation->messages()->create([
             'text' => $data['text'],
-            'member_id' => Auth::id()
+            'member_id' => Auth::id(),
         ]);
 
         if ($message) {
             broadcast(new NewConversationMessage($message->load('sender')));
+
             return true;
         }
 

@@ -9,9 +9,9 @@
 namespace App\Models\Messenger\GroupConversation;
 
 use App\Models\Member;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Messenger\File\File;
 use App\Models\Messenger\Message\Message;
+use Illuminate\Database\Eloquent\Model;
 
 class GroupConversation extends Model
 {

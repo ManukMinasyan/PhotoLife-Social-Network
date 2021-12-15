@@ -31,8 +31,8 @@ class UpdatePrivacyRequest extends FormRequest
         return [
             'privacy' => [
                 'required', 'string',
-                Rule::in(['public', 'private'])
-            ]
+                Rule::in(['public', 'private']),
+            ],
         ];
     }
 }

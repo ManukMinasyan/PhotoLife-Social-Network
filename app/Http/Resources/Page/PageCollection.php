@@ -15,7 +15,7 @@ class PageCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function ($page) {
-            return (new PageResource($page));
+            return new PageResource($page);
         });
 
         return parent::toArray($request);

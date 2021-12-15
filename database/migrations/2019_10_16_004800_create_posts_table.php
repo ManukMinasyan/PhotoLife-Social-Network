@@ -13,7 +13,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-		Schema::enableForeignKeyConstraints();
+        Schema::enableForeignKeyConstraints();
 
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');

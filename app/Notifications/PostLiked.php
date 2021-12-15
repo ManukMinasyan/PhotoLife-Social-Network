@@ -15,6 +15,7 @@ class PostLiked extends Notification
     use Queueable;
 
     private $post;
+
     private $message;
 
     /**
@@ -24,7 +25,7 @@ class PostLiked extends Notification
      */
     public function __construct($post)
     {
-        $this->message = "liked your post!";
+        $this->message = 'liked your post!';
         $this->post = $post;
     }
 
@@ -38,7 +39,6 @@ class PostLiked extends Notification
     {
         return ['database', 'broadcast'];
     }
-
 
     /**
      * Get the array representation of the notification.
@@ -54,8 +54,8 @@ class PostLiked extends Notification
             'message' => $this->message,
             'post' => [
                 'id' => $this->post->id,
-                'cover' => $this->post->getFirstMedia('uploads')->getFullUrl('thumb')
-            ]
+                'cover' => $this->post->getFirstMedia('uploads')->getFullUrl('thumb'),
+            ],
         ];
     }
 
@@ -73,9 +73,9 @@ class PostLiked extends Notification
             'message' => $this->message,
             'post' => [
                 'id' => $this->post->id,
-                'cover' => $this->post->getFirstMedia('uploads')->getFullUrl('thumb')
+                'cover' => $this->post->getFirstMedia('uploads')->getFullUrl('thumb'),
             ],
-            'created_at' => Carbon::now()->diffForHumans()
+            'created_at' => Carbon::now()->diffForHumans(),
         ]);
     }
 }
