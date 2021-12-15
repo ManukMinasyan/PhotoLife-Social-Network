@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Console\Command;
 use Illuminate\Validation\Factory as ValidatorFactory;

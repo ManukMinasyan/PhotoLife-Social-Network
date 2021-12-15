@@ -6,7 +6,7 @@ return [
         'group_conversations' => PhpJunior\LaravelVideoChat\Models\Group\Conversation\GroupConversation::class,
     ],
     'user' => [
-        'model' => App\User::class,
+        'model' => App\Models\User::class,
         'table' => 'users', // Existing user table name
     ],
     'table' => [

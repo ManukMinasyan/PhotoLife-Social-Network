@@ -47,7 +47,8 @@ class DemoDataSeeder extends Seeder
             'role' => 'superadmin',
             'remember_token' => \Illuminate\Support\Str::random(10),
         ];
-        \App\User::create($admin);
+
+      \App\Models\User::create($admin);
 
         /**
          * Demo Member Seed
