@@ -1,6 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/embed/post.css": "/css/embed/post.css",
-    "/css/auth/reset.css": "/css/auth/reset.css"
+    "/js/app.js": "/js/app.js?id=b61ce9b40262e94a10c9",
+    "/css/app.css": "/css/app.css?id=d909de0acf6b5606d120",
+    "/css/auth/reset.css": "/css/auth/reset.css?id=43e3baefb509be70833b",
+    "/css/embed/post.css": "/css/embed/post.css?id=93e0a430c268f362379c"
 }
