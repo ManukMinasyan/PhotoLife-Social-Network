@@ -51,7 +51,7 @@
         "rtc": "^3.4.0",
         "simplewebrtc": "^3.0.2",
         "sip.js": "^0.15.11",
-        "socket.io": "^2.4.0",
+        "socket.io": "^2.5.0",
         "socket.io-client": "^2.3.0",
         "vue": "^2.6.11",
         "vue-advanced-cropper": "^0.13.2",
